@@ -1,1 +1,1 @@
-node ./src/mambusbot.js
+node mambusbot.js
