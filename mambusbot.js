@@ -1,9 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.login(process.env.BOT_TOKEN).then(console.log);
-const server = client.guilds.fetch("398569110885367817");
 client.on('ready', readyDiscord);
-
 
 //variables and counters
 let penis = "8D";
@@ -87,7 +85,8 @@ client.on('message', message => {
                 "Número de vezes que se invocou o micropénis desde que o bot levou update: "+microCounter);
         }
         if(message.content.toString() === "!pingRandom"){
-            let randomUser = server.members.random();
+            let usersArray = message.guild.members.cache.array();
+            let randomUser = usersArray[Math.round(Math.random() * message.guild.memberCount)];
             let triggerChance = Math.random();
             if(triggerChance < 1){
                 message.channel.send("<@"+randomUser + "> agradece ao <@"+message.author+"> btw.");
