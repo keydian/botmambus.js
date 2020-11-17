@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-client.login(BOT_TOKEN).then(console.log);
+client.login(process.env.BOT_TOKEN).then(console.log);
 client.on('ready', readyDiscord);
 
 function readyDiscord(){
