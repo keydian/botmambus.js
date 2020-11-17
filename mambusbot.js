@@ -75,7 +75,7 @@ client.on('message', message => {
         }
         if(message.content.includes("micropenis") || message.content.includes("micropénis")){
             if(penis.length>2){
-                penis = removeAt(1, penis);
+                penis = removeAt(2, penis);
                 microCounter++;
                 client.data["penis"] = penis;//decreases penis size
                 client.data["microCounter"]++;
