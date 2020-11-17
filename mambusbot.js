@@ -87,7 +87,8 @@ client.on('message', message => {
         }
         if(message.content.toString() === "!pingRandom"){
             let usersArray = server.members.cache.array();
-            let randomUser = usersArray[Math.round(Math.random() * server.memberCount)];
+            let randomUserSelector = Math.floor(Math.random() * server.memberCount);
+            let randomUser = usersArray[randomUserSelector];
             let triggerChance = Math.random();
             if(triggerChance < 1){
                 message.channel.send("<@"+randomUser + "> agradece ao <@"+message.author+"> btw.");
