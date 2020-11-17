@@ -3,6 +3,11 @@ const client = new Discord.Client();
 client.login(process.env.BOT_TOKEN).then(console.log);
 client.on('ready', readyDiscord);
 
+//variables and counters
+let penis = "8D";
+let macroCounter = 0;
+let microCounter = 0;
+
 function readyDiscord(){
     client.user.setPresence({
         activity: {
@@ -55,5 +60,30 @@ client.on('message', message => {
             "QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? " +
             "QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? ");
     }
+    if (message.content.includes("macropenis")){
+        penis = insert(penis, 1, "=");
+    }
+    if(message.content.includes("micropenis")){
+        if(penis.length>2){
+            penis = removeAt(1, penis);
+        }
+        else{
+            message.reply("Olha lá, o teu micropénis n consegue ficar mais pequeno. Não tens vergonha?");
+        }
+    }
+    if(message.content.toString() === "!penis"){
+        message.reply("\n"+ penis + "\n" +
+        "Número de vezes que se invocou o macropénis: "+macroCounter+"\n"+
+        "Número de vezes que se invocou o micropénis: "+microCounter);
+    }
 })
+
+function insert(str, index, value) {
+    return str.substr(0, index) + value + str.substr(index);
+}
+function removeAt(i, str) {
+    let tmp = str.split(''); // convert to an array
+    tmp.splice(i - 1 , 1); // remove 1 element from the array (adjusting for non-zero-indexed counts)
+    return tmp.join(''); // reconstruct the string
+}
 
