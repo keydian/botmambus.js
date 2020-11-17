@@ -89,7 +89,7 @@ client.on('message', message => {
             let triggerChance = Math.random();
             if(triggerChance < 1){
                 let randomUser = usersArray[Math.round(Math.random() * usersArray.length)].tag;
-                message.channel.send(randomUser + " agradece ao "+message.author.tag+" btw.");
+                message.channel.send("@"+randomUser + " agradece ao @"+message.author.tag+" btw.");
             }
         }
 
