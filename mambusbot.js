@@ -88,8 +88,8 @@ client.on('message', message => {
             let usersArray = client.users.cache.array();
             let triggerChance = Math.random();
             if(triggerChance < 1){
-                let randomUser = usersArray[Math.round(Math.random() * usersArray.length)].tag;
-                message.channel.send("<@"+randomUser + "> agradece ao <@"+message.author.tag+"> btw.");
+                let randomUser = usersArray[Math.round(Math.random() * usersArray.length)];
+                message.channel.send("<@"+randomUser + "> agradece ao <@"+message.author+"> btw.");
             }
         }
 
