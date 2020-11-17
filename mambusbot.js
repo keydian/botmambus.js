@@ -62,10 +62,12 @@ client.on('message', message => {
     }
     if (message.content.includes("macropenis")){
         penis = insert(penis, 1, "=");
+        macroCounter++;
     }
     if(message.content.includes("micropenis")){
         if(penis.length>2){
             penis = removeAt(1, penis);
+            microCounter++;
         }
         else{
             message.reply("Olha lá, o teu micropénis n consegue ficar mais pequeno. Não tens vergonha?");
