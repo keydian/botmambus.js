@@ -84,12 +84,12 @@ client.on('message', message => {
                 "Número de vezes que se invocou o macropénis desde que o bot levou update: "+macroCounter+"\n"+
                 "Número de vezes que se invocou o micropénis desde que o bot levou update: "+microCounter);
         }
-        if(message.content.toString() === "!ping"){
+        if(message.content.toString() === "!pingRandom"){
             let usersArray = client.users.cache.array();
             let triggerChance = Math.random();
             if(triggerChance < 1){
-                let randomUser = Math.round(Math.random() * usersArray.length);
-                message.channel.send(randomUser + "agradece ao "+ message.author+" btw.");
+                let randomUser = usersArray[Math.round(Math.random() * usersArray.length)].tag;
+                message.channel.send(randomUser + " agradece ao "+message.author.tag+" btw.");
             }
         }
 
