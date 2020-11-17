@@ -30,7 +30,7 @@ function readyDiscord(){
             name: 'Analisando Mambus Stranhus em projetos...'
         },
     }).then(console.log);
-    client.channels.cache.find(channel => channel.name === "bot-spam").send("Detetei Mambus Stranhus no vosso trabalho, agora vão a discussão!").
+    client.channels.cache.find(channel => channel.name === "bot-spam").send("Bot logged in.").
     then(msg =>{
         msg.react("MAMBUS:775834254939652096"); //react com mambus emoji
     });
@@ -40,68 +40,69 @@ client.on('message', message => {
     if(!message.author.bot){
 
         //REACTIVE EVENTS
-        if (message.content.includes("birra")){ //birra trigger
+        if (message.content.toLowerCase().includes("birra")){ //birra trigger
             message.react("🇫"); //react 'F' emoji
             message.react("🇩"); //react 'D' emoji
             message.react("🇵"); //react 'P' emoji
         }
-        if (message.content.includes("damasio") || message.content.includes("damásio")){  //damasio trigger
+        if (message.content.toLowerCase().includes("damasio") || message.content.toLowerCase().includes("damásio")){  //damasio trigger
             message.react("💣");
             message.react("DamsGame:731832375486447678");
         }
-        if (message.content.includes("leite")){ //joao leite trigger
-            message.reply("Toma um copo de João Leite: https://ibb.co/tpX6SDt");
+        if (message.content.toLowerCase().includes("leite")){ //joao leite trigger
+            message.reply("Aluno/a, tome um copo de João Leite: https://ibb.co/tpX6SDt");
         }
-        if(message.content.includes("mambus")){
+        if(message.content.toLowerCase().includes("mambus")){
             let rng = Math.round(Math.random() * 11); //11 = array.length-1
             message.reply(mambusArray[rng]).then(msg => {
                     msg.react("MAMBUS:775834254939652096"); //reacts with mambus
                 }
             );
         }
-        if(message.content.toString() === "!quem"){ //te perguntou
-            message.reply("QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? " +
-                "QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? " +
-                "QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? " +
-                "QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? QUEM? ");
+        if(message.content.toString().toLowerCase() === "!quem"){ //te perguntou
+            message.reply("Quem te perguntou.");
         }
-        if (message.content.includes("macropenis") || message.content.includes("macropénis")){
+        if (message.content.toLowerCase().includes("macropenis") || message.content.toLowerCase().includes("macropénis")){
             penis = insert(penis, 1, "="); //increases penis size
             macroCounter++;
         }
-        if(message.content.includes("micropenis") || message.content.includes("micropénis")){
+        if(message.content.toLowerCase().includes("micropenis") || message.content.toLowerCase().includes("micropénis")){
             if(penis.length>2){
                 penis = removeAt(2, penis);
                 microCounter++;
             }
             else{
-                message.reply("Olha lá, o teu micropénis n consegue ficar mais pequeno. Não tens vergonha?");
+                message.reply("Caro aluno/a, o seu micropénis n consegue ficar mais pequeno. Não tem vergonha?");
             }
         }
 
         //MEME COMMANDS
-        if(message.content.toString() === "!penis"){ //command to print penis and penis stats
+        if(message.content.toString().toLowerCase() === "!penis"){ //command to print penis and penis stats
             message.reply("\n"+ penis + "\n" +
                 "Número de vezes que se invocou o macropénis desde que o bot levou update: "+macroCounter+"\n"+
                 "Número de vezes que se invocou o micropénis desde que o bot levou update: "+microCounter);
         }
-        if(message.content.toString() === "!pingRandom"){
+        if(message.content.toString().toLowerCase() === "!pingrandom"){
             let usersArray = message.guild.members.cache.array();
             let randomUser = usersArray[Math.round(Math.random() * message.guild.memberCount)]
-            let triggerChance = Math.random();
+            let triggerChance = Math.random() * 2;
             if(triggerChance < 1){
-                message.channel.send("<@"+randomUser + "> agradece ao <@"+message.author+"> btw.");
+                message.channel.send("<@"+randomUser + "> acusou o/a <@"+message.author+"> de cometer plágio.");
             }
         }
 
         //ACTUALLY USEFUL COMMANDS
-        if(message.content.toString() === "!github"){
+        if(message.content.toString().toLowerCase() === "!github"){
             message.reply("https://github.com/keydian/botmambus.js").then(msg =>{
                 msg.react("MAMBUS:775834254939652096");
             })
         }
-        if(message.content.toString() === "!githubRC"){
+        if(message.content.toString().toLowerCase() === "!githubRC"){
             message.reply("https://github.com/jlegatheaux/RC2020-assignments");
+        }
+        if(message.content.toString().toLowerCase() === "!help"){
+            message.channel.send("Caro aluno/a, acha que tenho tempo para o ajudar? Projetos não se corrigem sozinhos!" +
+                "Use !github, RTFM!");
         }
     }
 })
