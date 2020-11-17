@@ -59,6 +59,8 @@ client.on('message', message => {
                 }
             );
         }
+
+        //MEME COMMANDS
         if(message.content.toString().toLowerCase() === "j!quem"){ //te perguntou
             message.reply("Quem te perguntou.");
         }
@@ -75,9 +77,7 @@ client.on('message', message => {
                 message.reply("Caro aluno/a, o seu micropénis n consegue ficar mais pequeno. Não tem vergonha?");
             }
         }
-
-        //MEME COMMANDS
-        if(message.content.toString().toLowerCase() === "!penis"){ //command to print penis and penis stats
+        if(message.content.toString().toLowerCase() === "j!penis"){ //command to print penis and penis stats
             message.reply("\n"+ penis + "\n" +
                 "Número de vezes que se invocou o macropénis desde que o bot levou update: "+macroCounter+"\n"+
                 "Número de vezes que se invocou o micropénis desde que o bot levou update: "+microCounter);
