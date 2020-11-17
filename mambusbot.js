@@ -97,7 +97,7 @@ client.on('message', message => {
                 msg.react("MAMBUS:775834254939652096");
             })
         }
-        if(message.content.toString().toLowerCase() === "j!githubRC"){
+        if(message.content.toString().toLowerCase() === "j!githubrc"){
             message.reply("https://github.com/jlegatheaux/RC2020-assignments");
         }
         if(message.content.toString().toLowerCase() === "j!help"){
