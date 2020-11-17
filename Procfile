@@ -1,1 +1,1 @@
-node mambusbot.js
+worker: node mambusbot.js
