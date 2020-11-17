@@ -59,7 +59,7 @@ client.on('message', message => {
                 }
             );
         }
-        if(message.content.toString().toLowerCase() === "!quem"){ //te perguntou
+        if(message.content.toString().toLowerCase() === "j!quem"){ //te perguntou
             message.reply("Quem te perguntou.");
         }
         if (message.content.toLowerCase().includes("macropenis") || message.content.toLowerCase().includes("macropénis")){
@@ -82,7 +82,7 @@ client.on('message', message => {
                 "Número de vezes que se invocou o macropénis desde que o bot levou update: "+macroCounter+"\n"+
                 "Número de vezes que se invocou o micropénis desde que o bot levou update: "+microCounter);
         }
-        if(message.content.toString().toLowerCase() === "!pingrandom"){
+        if(message.content.toString().toLowerCase() === "j!pingrandom"){
             let usersArray = message.guild.members.cache.array();
             let randomUser = usersArray[Math.round(Math.random() * message.guild.memberCount)]
             let triggerChance = Math.random() * 2;
@@ -92,17 +92,17 @@ client.on('message', message => {
         }
 
         //ACTUALLY USEFUL COMMANDS
-        if(message.content.toString().toLowerCase() === "!github"){
+        if(message.content.toString().toLowerCase() === "j!github"){
             message.reply("https://github.com/keydian/botmambus.js").then(msg =>{
                 msg.react("MAMBUS:775834254939652096");
             })
         }
-        if(message.content.toString().toLowerCase() === "!githubRC"){
+        if(message.content.toString().toLowerCase() === "j!githubRC"){
             message.reply("https://github.com/jlegatheaux/RC2020-assignments");
         }
-        if(message.content.toString().toLowerCase() === "!help"){
+        if(message.content.toString().toLowerCase() === "j!help"){
             message.channel.send("Caro aluno/a, acha que tenho tempo para o ajudar? Projetos não se corrigem sozinhos!" +
-                "Use !github, RTFM!");
+                " Use !github, RTFM!");
         }
     }
 })
