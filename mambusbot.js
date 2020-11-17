@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.login(process.env.BOT_TOKEN).then(console.log);
-const server = client.guilds.cache.get("398569110885367817");
+const server = client.guilds.fetch("398569110885367817");
 client.on('ready', readyDiscord);
 
 
@@ -90,7 +90,6 @@ client.on('message', message => {
             let randomUser = server.members.random();
             let triggerChance = Math.random();
             if(triggerChance < 1){
-
                 message.channel.send("<@"+randomUser + "> agradece ao <@"+message.author+"> btw.");
             }
         }
