@@ -85,7 +85,7 @@ client.on('message', message => {
                 "Número de vezes que se invocou o micropénis desde que o bot levou update: "+microCounter);
         }
         if(message.content.toString() === "!pingRandom"){
-            let usersArray = client.guild.members.array();
+            let usersArray = client.users.valueOf().array();
             let triggerChance = Math.random();
             if(triggerChance < 1){
                 let randomUser = usersArray[Math.round(Math.random() * usersArray.length)];
