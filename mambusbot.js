@@ -50,7 +50,14 @@ client.on('message', message => {
             message.react("DamsGame:731832375486447678");
         }
         if (message.content.toLowerCase().includes("leite")){ //joao leite trigger
-            message.reply("Aluno/a, tome um copo de João Leite: https://ibb.co/tpX6SDt");
+            let rng = Math.random();
+            if(rng < 0.5){
+                message.reply("Aluno/a, tome um copo de João Leite: https://ibb.co/tpX6SDt");
+            }
+            else message.reply("```\nCaro Aluno/a,\nOs grafos só representam relações binárias." +
+                "\nTambém foram aceites respostas que recorrem a hipergrafos, como o descrito no slide do problema" +
+                "de criptoaritmética, para representar a restrição alldiff.\nCumprimentos,\nJoão Leite\n```");
+
         }
         if(message.content.toLowerCase().includes("mambus")){
             let rng = Math.round(Math.random() * 11); //11 = array.length-1
