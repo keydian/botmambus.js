@@ -54,9 +54,9 @@ client.on('message', message => {
             if(rng < 0.5){
                 message.reply("Aluno/a, tome um copo de João Leite: https://ibb.co/tpX6SDt");
             }
-            else message.reply("```\nCaro Aluno/a,\nOs grafos só representam relações binárias." +
-                "\nTambém foram aceites respostas que recorrem a hipergrafos, como o descrito no slide do problema" +
-                "de criptoaritmética, para representar a restrição alldiff.\nCumprimentos,\nJoão Leite\n```");
+            else message.reply("```\nCaro Aluno/a,\nOs grafos só representam restrições binárias." +
+                "\nTambém foram aceites respostas que recorreram a hipergrafos, como o descrito no slide do problema" +
+                " de criptoaritmética, para representar a restrição alldiff.\nCumprimentos,\nJoão Leite\n```");
 
         }
         if(message.content.toLowerCase().includes("mambus")){
