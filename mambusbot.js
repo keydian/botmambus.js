@@ -87,7 +87,7 @@ client.on('message', message => {
             let randomUser = usersArray[Math.round(Math.random() * message.guild.memberCount)]
             let triggerChance = Math.random() * 2;
             if(triggerChance < 1){
-                message.channel.send("<@"+randomUser + "> acusou o/a <@"+message.author+"> de cometer plágio.");
+                message.channel.send("<@"+message.author + "> acusou o/a <@"+randomUser+"> de cometer plágio.");
             }
         }
         if (message.content.toString().toLowerCase() === "j!grandegil"){
