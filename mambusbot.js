@@ -102,7 +102,7 @@ client.on('message', message => {
         }
         if(message.content.toString().toLowerCase() === "j!help"){
             message.channel.send("Caro aluno/a, acha que tenho tempo para o ajudar? Projetos não se corrigem sozinhos!" +
-                " Use !github, RTFM!");
+                " Use j!github, RTFM!");
         }
     }
 })
