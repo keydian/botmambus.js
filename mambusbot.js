@@ -90,6 +90,10 @@ client.on('message', message => {
                 message.channel.send("<@"+randomUser + "> acusou o/a <@"+message.author+"> de cometer plágio.");
             }
         }
+        if (message.content.toString().toLowerCase() === "j!grandegil"){
+            let gil = message.guild.members.cache.get("140512163314794496");
+            message.channel.send("<@"+gil+"> Grande Gil!");
+        }
 
         //ACTUALLY USEFUL COMMANDS
         if(message.content.toString().toLowerCase() === "j!github"){
