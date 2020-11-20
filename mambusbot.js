@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
+const GoogleImages = require('google-images');
 const client = new Discord.Client();
+const grabGImages = new GoogleImages("", "");
 client.login(process.env.BOT_TOKEN).then(console.log);
 client.on('ready', readyDiscord);
 
@@ -100,6 +102,26 @@ client.on('message', message => {
         if (message.content.toString().toLowerCase() === "j!grandegil"){
             let gil = message.guild.members.cache.get("140512163314794496");
             message.channel.send("<@"+gil+"> Grande Gil!");
+        }
+        if(message.content.toString().startsWith("j!random ")){
+            let searchParameter = message.content.substr(9);
+            try{
+                if(searchParameter === ("")){
+                    message.channel.send("Aluno/a, experimente adicionar um parâmetro à sua pesquisa, não?")
+                }
+                else {
+                    const results = grabGImages.search(searchParameter);
+                    const reply = !results.length ?
+                        "No results":
+                        new Attachment(results[Math.floor(Math.random() * results.length)].url);
+                        message.channel.send(reply);
+                        }
+            }
+            catch(e){
+                console.error(e);
+                message.channel.send("Aconteceu um erro aluno/a, talvez tenham colocado uma bomba nos servidores...")
+            }
+
         }
 
         //ACTUALLY USEFUL COMMANDS
