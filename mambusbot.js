@@ -1,6 +1,6 @@
 const {Client, Attachment} = require('discord.js');
 const GoogleImages = require('google-images');
-const grabGImages = new GoogleImages();
+const grabGImages = new GoogleImages("438c9e60617e4f492",process.env.G_API_KEY);
 const client = new Client;
 client.login(process.env.BOT_TOKEN).then(console.log);
 client.on('ready', readyDiscord);
