@@ -1,6 +1,6 @@
-const {Client, Attachment} = require('discord.js');
-const GoogleImages = require('google-images');
-const grabGImages = new GoogleImages("438c9e60617e4f492",process.env.G_API_KEY);
+const {Client} = require('discord.js');
+const request = require('request');
+const cheerio = require('cheerio');
 const client = new Client;
 client.login(process.env.BOT_TOKEN).then(console.log);
 client.on('ready', readyDiscord);
@@ -105,23 +105,12 @@ client.on('message', message => {
         }
         if(message.content.toString().trim().startsWith("j!random")){
             let searchParameter = message.content.substr(8);
-            try{
                 if(searchParameter === ("")){
                     message.channel.send("Aluno/a, experimente adicionar um parâmetro à sua pesquisa, não?")
                 }
                 else {
-                    const results = grabGImages.search(searchParameter);
-                    const reply = !results.length ?
-                        "No results":
-                        new Attachment(results[Math.floor(Math.random() * results.length)].url);
-                        message.channel.send(reply);
-                        }
-            }
-            catch(e){
-                console.error(e);
-                message.channel.send("Aconteceu um erro aluno/a, talvez tenham colocado uma bomba nos servidores...")
-            }
-
+                    image(message, searchParameter);
+                }
         }
 
         //ACTUALLY USEFUL COMMANDS
@@ -153,5 +142,36 @@ function removeAt(i, str) {
     let tmp = str.split(''); // convert to an array
     tmp.splice(i - 1 , 1); // remove 1 element from the array (adjusting for non-zero-indexed counts)
     return tmp.join(''); // reconstruct the string
+}
+function image(message, searchTerm) {
+    let options = {
+        url: "http://results.dogpile.com/serp?qc=images&q=" + searchTerm,
+        method: "GET",
+        headers: {
+            Accept: "text/html",
+            "User-Agent": "Chrome",
+        },
+    }
+    request(options, function(error, response, responseBody) {
+        if (error) {
+            return;
+        }
+
+        $ = cheerio.load(responseBody);
+
+        let links = $('.image a.link');
+
+        let urls = new Array(links.length)
+            .fill(0)
+            .map((v, i) => links.eq(i).attr('href'));
+
+        console.log(urls);
+
+        if (!urls.length) {
+            return;
+        }
+
+        message.channel.send(urls[Math.floor(Math.random() * urls.length)]);
+    });
 }
 
