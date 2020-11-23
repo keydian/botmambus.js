@@ -51,6 +51,10 @@ client.on('message', message => {
             message.react("💣");
             message.react("DamsGame:731832375486447678");
         }
+        if(message.content.toLowerCase().includes("zuca")){
+            message.channel.send("PAHPYRUZZZZ");
+            message.channel.send("https://ibb.co/3FYq5gM");
+        }
         if (message.content.toLowerCase().includes("leite")){ //joao leite trigger
             let rng = Math.random();
             if(rng < 0.5){
