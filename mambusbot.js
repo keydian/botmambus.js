@@ -103,7 +103,7 @@ client.on('message', message => {
             let gil = message.guild.members.cache.get("140512163314794496");
             message.channel.send("<@"+gil+"> Grande Gil!");
         }
-        if(message.content.toString().trim().startsWith("j!random")){
+        if(message.content.toString().startsWith("j!random")){
             let searchParameter = message.content.substr(8);
                 if(searchParameter === ("")){
                     message.channel.send("Aluno/a, experimente adicionar um parâmetro à sua pesquisa, não?")
@@ -128,6 +128,17 @@ client.on('message', message => {
         }
     }
 })
+
+
+
+
+
+
+
+
+
+
+
 
 
 
