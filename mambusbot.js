@@ -73,7 +73,7 @@ client.on('message', message => {
             message.channel.send("https://www.youtube.com/watch?v=qrxv0JNVtgY"); //song
         }
         if(message.content.toLowerCase().includes("gif")){
-            let rng = Math.round(Math.random());
+            let rng = Math.round(Math.random()*100);
             if (rng < 0.01) message.channel.send("O aluno anda a abusar da GIF Meta, vou comunicar ao Coordenador de Curso.");
             if (rng > 0.01 && rng < 0.1) message.channel.send("Aviso o aluno que abusar da GIF meta pode resultar numa" +
                 " visita ao Gabinete do Damásio.");
