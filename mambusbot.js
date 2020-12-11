@@ -7,9 +7,6 @@ client.on('ready', readyDiscord);
 
 
 //variables and counters
-let penis = "8D";
-let macroCounter = 0;
-let microCounter = 0;
 let mambusArray = [
     "https://ibb.co/xDks7yL", //stores all mambusStranhus.png
     "https://ibb.co/Qp7Mr0z",
@@ -72,28 +69,26 @@ client.on('message', message => {
                 }
             );
         }
+        if(message.content.toLowerCase().includes("forçar elementais") || message.content.toLowerCase().includes("forcar elementais")){
+            message.channel.send("https://www.youtube.com/watch?v=qrxv0JNVtgY"); //song
+        }
+        if(message.content.toLowerCase().includes("gif")){
+            let rng = Math.round(Math.random());
+            if (rng < 0.01) message.channel.send("O aluno anda a abusar da GIF Meta, vou comunicar ao Coordenador de Curso.");
+            if (rng > 0.01 && rng < 0.1) message.channel.send("Aviso o aluno que abusar da GIF meta pode resultar numa" +
+                " visita ao Gabinete do Damásio.");
+        }
+        if(message.content.toLowerCase().includes("legatheaux")){
+            message.channel.send("https://ibb.co/93c6Czy").then(msg=>{ //send jLegatheuxossauro
+                msg.react("🦖 ");
+            });
+            message.channel.send("Aqui vemos um JLegatheauxossauro no seu habitat natural.");
+
+        }
 
         //MEME COMMANDS
         if(message.content.toString().toLowerCase() === "j!quem"){ //te perguntou
             message.reply("Quem te perguntou.");
-        }
-        if (message.content.toLowerCase().includes("macropenis") || message.content.toLowerCase().includes("macropénis")){
-            penis = insert(penis, 1, "="); //increases penis size
-            macroCounter++;
-        }
-        if(message.content.toLowerCase().includes("micropenis") || message.content.toLowerCase().includes("micropénis")){
-            if(penis.length>2){
-                penis = removeAt(2, penis);
-                microCounter++;
-            }
-            else{
-                message.reply("Caro aluno/a, o seu micropénis n consegue ficar mais pequeno. Não tem vergonha?");
-            }
-        }
-        if(message.content.toString().toLowerCase() === "j!penis"){ //command to print penis and penis stats
-            message.reply("\n"+ penis + "\n" +
-                "Número de vezes que se invocou o macropénis desde que o bot levou update: "+macroCounter+"\n"+
-                "Número de vezes que se invocou o micropénis desde que o bot levou update: "+microCounter);
         }
         if(message.content.toString().toLowerCase() === "j!pingrandom"){
             let usersArray = message.guild.members.cache.array();
@@ -116,6 +111,7 @@ client.on('message', message => {
                     image(message, searchParameter);
                 }
         }
+
 
         //ACTUALLY USEFUL COMMANDS
         if(message.content.toString().toLowerCase() === "j!github"){
