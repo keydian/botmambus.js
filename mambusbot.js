@@ -80,7 +80,7 @@ client.on('message', message => {
         }
         if(message.content.toLowerCase().includes("legatheaux")){
             message.channel.send("https://ibb.co/93c6Czy").then(msg=>{ //send jLegatheuxossauro
-                msg.react("🦖 ");
+                msg.react("🦖");
             });
             message.channel.send("Aqui vemos um JLegatheauxossauro no seu habitat natural.");
 
