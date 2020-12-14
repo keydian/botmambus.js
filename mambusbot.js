@@ -36,7 +36,7 @@ function readyDiscord(){
 }
 
 client.on('message', message => {
-    if(!message.author.bot){
+    if(!message.author.bot && !message.content.startsWith(":")){
 
         //REACTIVE EVENTS
         if (message.content.toLowerCase().includes("birra")){ //birra trigger
@@ -54,14 +54,23 @@ client.on('message', message => {
         }
         if (message.content.toLowerCase().includes("leite")){ //joao leite trigger
             let rng = Math.random();
-            if(rng < 0.5){
+            if(rng < 0.33){
                 message.reply("Aluno/a, tome um copo de João Leite: https://ibb.co/tpX6SDt");
             }
-            else message.reply("```\nCaro Aluno/a,\nOs grafos só representam restrições binárias." +
-                "\nTambém foram aceites respostas que recorreram a hipergrafos, como o descrito no slide do problema" +
-                " de criptoaritmética, para representar a restrição alldiff.\nCumprimentos,\nJoão Leite\n```");
+            else if (rng < 0.66){
+                message.reply("```\nCaro Aluno/a,\nOs grafos só representam restrições binárias." +
+                    "\nTambém foram aceites respostas que recorreram a hipergrafos, como o descrito no slide do problema" +
+                    " de criptoaritmética, para representar a restrição alldiff.\nCumprimentos,\nJoão Leite\n```");
+            }
+            else{
+                message.channel.send("Devido ao tamanho da mensagem, a mensagem foi convertida neste link: \n" +
+                    "https://0bin.net/paste/KersfkPB#MB3jciIBp68pJrT2DdTaTsWpNqnUX-ouHRLUkUf4GWs").then(msg =>{
+                        msg.react("copodejoaoleite:788081069986938910");
+                    }
+                )
+            }
 
-        }
+            }
         if(message.content.toLowerCase().includes("mambus")){
             let rng = Math.round(Math.random() * 11); //11 = array.length-1
             message.reply(mambusArray[rng]).then(msg => {
@@ -112,7 +121,6 @@ client.on('message', message => {
                 }
         }
 
-
         //ACTUALLY USEFUL COMMANDS
         if(message.content.toString().toLowerCase() === "j!github"){
             message.reply("https://github.com/keydian/botmambus.js").then(msg =>{
@@ -124,7 +132,7 @@ client.on('message', message => {
         }
         if(message.content.toString().toLowerCase() === "j!help"){
             message.channel.send("Caro aluno/a, acha que tenho tempo para o ajudar? Projetos não se corrigem sozinhos!" +
-                " Use j!github, RTFM!");
+                " Use j!github, ERRO GRAVE!!!");
         }
     }
 })
