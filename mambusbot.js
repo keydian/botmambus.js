@@ -36,7 +36,7 @@ function readyDiscord(){
 }
 
 client.on('message', message => {
-    if(!message.author.bot && !message.content.startsWith(":")){
+    if(!message.author.bot){
 
         //REACTIVE EVENTS
         if (message.content.toLowerCase().includes("birra")){ //birra trigger
@@ -65,7 +65,7 @@ client.on('message', message => {
             else{
                 message.channel.send("Devido ao tamanho da mensagem, a mensagem foi convertida neste link: \n" +
                     "https://0bin.net/paste/KersfkPB#MB3jciIBp68pJrT2DdTaTsWpNqnUX-ouHRLUkUf4GWs").then(msg =>{
-                        msg.react("copodejoaoleite:788081069986938910");
+                        msg.react("copodejoaoleite:788084481838940170");
                     }
                 )
             }
