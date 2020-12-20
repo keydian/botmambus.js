@@ -77,7 +77,7 @@ client.on('message', message => {
         if(message.content.toLowerCase().includes("forçar elementais") || message.content.toLowerCase().includes("forcar elementais")){
             message.channel.send("https://www.youtube.com/watch?v=qrxv0JNVtgY"); //song
         }
-        if(message.url.indexOf("gif", message.content.length - 3)!== -1){
+        if(message.url.includes("tenor")&&message.url.includes("gif")){
             let rng = Math.round(Math.random()*100);
             if (rng < 0.01) message.channel.send("O aluno anda a abusar da GIF Meta, vou comunicar ao Coordenador de Curso.");
             if (rng > 0.01 && rng < 0.1) message.channel.send("Aviso o aluno que abusar da GIF meta pode resultar numa" +
