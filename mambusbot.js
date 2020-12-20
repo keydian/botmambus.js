@@ -64,12 +64,8 @@ client.on('message', message => {
             }
             else{
                 message.channel.send("Devido ao tamanho da mensagem, a mensagem foi convertida neste link: \n" +
-                    "https://0bin.net/paste/KersfkPB#MB3jciIBp68pJrT2DdTaTsWpNqnUX-ouHRLUkUf4GWs").then(msg =>{
-                        msg.react("copodejoaoleite:788084481838940170");
-                    }
-                )
+                    "https://0bin.net/paste/KersfkPB#MB3jciIBp68pJrT2DdTaTsWpNqnUX-ouHRLUkUf4GWs");
             }
-
             }
         if(message.content.toLowerCase().includes("mambus")){
             let rng = Math.round(Math.random() * 11); //11 = array.length-1
@@ -81,7 +77,7 @@ client.on('message', message => {
         if(message.content.toLowerCase().includes("forçar elementais") || message.content.toLowerCase().includes("forcar elementais")){
             message.channel.send("https://www.youtube.com/watch?v=qrxv0JNVtgY"); //song
         }
-        if(message.content.toLowerCase().includes("gif")){
+        if(message.url.indexOf("gif", message.content.length - 3)!== -1){
             let rng = Math.round(Math.random()*100);
             if (rng < 0.01) message.channel.send("O aluno anda a abusar da GIF Meta, vou comunicar ao Coordenador de Curso.");
             if (rng > 0.01 && rng < 0.1) message.channel.send("Aviso o aluno que abusar da GIF meta pode resultar numa" +
