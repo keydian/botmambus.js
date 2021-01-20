@@ -15,16 +15,11 @@ mongo.connect(url, {useNewUrlParser: true}, function(err, db) {
 
 
 function isUserOnDatabase(message){
-    database.collection("users").find({userID: message.author.id}, function(err, result){
-        if (err){
-            throw err;
-        }
-        if (result.documents === undefined){
+        if (database.collection("users").find({userID: message.author.id}).count === 0){
             let user = {userID: message.author.id};
-            database.collection("users").insert(user);
+            database.collection("users").insertOne(user);
             console.log("User added to database.");
         }
-    });
 }
 function readyDiscord(){
     client.user.setPresence({
