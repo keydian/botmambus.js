@@ -11,7 +11,7 @@ mongo.connect(url, {useUnifiedTopology: true}, function (err, client) {
     console.log("Database created!");
     database = client.db("botMambusJS");
     let firstRun = database.collection("boolean").find({name: "firstRun"}).limit(1).next();
-    if(firstRun.toString().contains("value: true")){
+    if(firstRun.toString().includes("value: true")){
         const server = client.guilds.get("398569110885367817");
         server.members.cache.forEach(member => {
                 let userData = {userID: member.id, userName: member.userName, balance: 0};
