@@ -6,7 +6,7 @@ client.on('ready', readyDiscord);
 const url = encodeURI(process.env.MONGODB_URI);
 let database;
 
-mongo.connect(url, {useNewUrlParser: true}, {useUnifiedTopology: true}, function(err, db) {
+mongo.connect(url, {useNewUrlParser: true, useUnifiedTopology:true}, function(err, db) {
     if (err) throw err;
     console.log("Database created!");
     database = db.db("botMambusJS");
