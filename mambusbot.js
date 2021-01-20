@@ -3,10 +3,10 @@ const mongo = require('mongodb').MongoClient;
 const client = new Client;
 client.login(process.env.BOT_TOKEN).then(console.log);
 client.on('ready', readyDiscord);
-const url = process.env.MONGODB_URI;
+const url = encodeURI(process.env.MONGODB_URI);
 let database;
 
-mongo.connect(url, function(err, db) {
+mongo.connect(url, {useNewUrlParser: true}, function(err, db) {
     if (err) throw err;
     console.log("Database created!");
     database = db.db("botMambusJS");
@@ -19,10 +19,8 @@ function isUserOnDatabase(message){
         if (err){
             let user = {userID: message.author.id};
             database.collection("users").insert(user);
+            console.log("User added to database.");
             throw err;
-        }
-        else {
-            console.log("User already in database.");
         }
     });
 }
