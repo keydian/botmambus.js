@@ -19,7 +19,7 @@ function isUserOnDatabase(message){
         if (err){
             throw err;
         }
-        if (result.documents.toArray === []){
+        if (result.documents === undefined){
             let user = {userID: message.author.id};
             database.collection("users").insert(user);
             console.log("User added to database.");
