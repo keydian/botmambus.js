@@ -16,10 +16,10 @@ mongo.connect(url, {useNewUrlParser: true, useUnifiedTopology:true}, function(er
 function isUserOnDatabase(message){
         database.collection("users").find({userID: message.author.id}, {$exists: true}).toArray(function(err, result){
             if(!result){
-                let user = {userID: message.author.id, userName: message.author.username};
-                database.collection("users").insertOne(user, function(err, res){
+                let user = {userID: message.author.id, userName: message.author.username, balance:0};
+                let addUser = database.collection("users").insertOne(user, function(err){
                     if (err) throw err;
-                    console.log("User added to database: "+message.author.username);
+                    console.log(addUser);
                 });
             }
         });
