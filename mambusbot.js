@@ -6,24 +6,25 @@ client.on('ready', readyDiscord);
 const url = encodeURI(process.env.MONGODB_URI);
 let database;
 
-mongo.connect(url, {useNewUrlParser: true, useUnifiedTopology:true}, function(err, db) {
+mongo.connect(url, {useUnifiedTopology: true}, function (err, client) {
     if (err) throw err;
     console.log("Database created!");
-    database = db.db("botMambusJS");
+    database = client.db("botMambusJS");
+    let firstRun = database.collection("boolean").find({name: "firstRun"}).limit(1).next();
+    if(firstRun.toString().contains("value: true")){
+        const server = client.guilds.get("398569110885367817");
+        server.members.cache.forEach(member => {
+                let userData = {userID: member.id, userName: member.userName, balance: 0};
+                database.collection("users").insertOne(userData);
+            }
+        )
+        database.collection("boolean").updateOne({name: firstRun},{$set:{'value':'false'}});
+    }
+
+
+
 });
 
-
-function isUserOnDatabase(message){
-        database.collection("users").find({userID: message.author.id}, {$exists: true}).toArray(function(err, result){
-            if(!result){
-                let user = {userID: message.author.id, userName: message.author.username, balance:0};
-                let addUser = database.collection("users").insertOne(user, function(err){
-                    if (err) throw err;
-                    console.log(addUser);
-                });
-            }
-        });
-}
 function readyDiscord(){
     client.user.setPresence({
         activity: {
