@@ -18,7 +18,10 @@ function isUserOnDatabase(message){
         database.collection("users").find({userID: message.author.id}, {$exists: true}).toArray(function(err, result){
             if(!result){
                 let user = {userID: message.author.id, userName: message.author.username};
-                database.collection("users").insertOne(user).then(r => console.log(r));
+                database.collection("users").insertOne(user, function(err, res){
+                    if (err) throw err;
+                    console.log("User added to database: "+message.author.username);
+                });
             }
         });
 }
