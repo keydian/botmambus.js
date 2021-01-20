@@ -14,7 +14,16 @@ mongo.connect(url, function(err, db) {
 });
 
 
-
+function isUserOnDatabase(message){
+    database.collection("users").findOne({}, {projection: {userID: message.author.id}}, function(err, result){
+        if (err){
+            let user = {userID: message.author.id};
+            database.collection("users").insertOne(user);
+            throw err;
+        }
+        console.log("User already in database.");
+    });
+}
 function readyDiscord(){
     client.user.setPresence({
         activity: {
@@ -30,12 +39,7 @@ function readyDiscord(){
 client.on('message', message => {
     if(!message.author.bot){
         //Adds user to database if said user isnt already in the database
-        if(!database.collection("users").findOne({}, {projection:{ userID: message.author.id}})){
-            let user = {userID: message.author.id};
-            database.collection("users").insertOne(user);
-        }
-
-
+        isUserOnDatabase(message);
         //ACTUALLY USEFUL COMMANDS
         if(message.content.toString().toLowerCase() === "j!github"){
             message.reply("https://github.com/keydian/botmambus.js").then(msg =>{
