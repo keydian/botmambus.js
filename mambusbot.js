@@ -15,13 +15,15 @@ mongo.connect(url, function(err, db) {
 
 
 function isUserOnDatabase(message){
-    database.collection("users").find({_id: message.author.id}, function(err){
+    database.collection("users").find({userID: message.author.id}, function(err){
         if (err){
-            let user = {_id: message.author.id};
+            let user = {userID: message.author.id};
             database.collection("users").insert(user);
             throw err;
         }
-        console.log("User already in database.");
+        else {
+            console.log("User already in database.");
+        }
     });
 }
 function readyDiscord(){
