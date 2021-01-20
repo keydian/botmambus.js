@@ -15,7 +15,7 @@ mongo.connect(url, {useNewUrlParser: true}, function(err, db) {
 
 
 function isUserOnDatabase(message){
-        if (database.collection("users").find({userID: message.author.id}).length === 0){
+        if (!database.collection("users").find({userID: message.author.id}, {$exists: true}).toArray){
             let user = {userID: message.author.id};
             database.collection("users").insertOne(user).then(r => console.log("User added to database."));
         }
