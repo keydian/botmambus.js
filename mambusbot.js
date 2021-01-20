@@ -15,10 +15,10 @@ mongo.connect(url, function(err, db) {
 
 
 function isUserOnDatabase(message){
-    database.collection("users").findOne({}, {projection: {userID: message.author.id}}, function(err, result){
+    database.collection("users").find({_id: message.author.id}, function(err){
         if (err){
-            let user = {userID: message.author.id};
-            database.collection("users").insertOne(user);
+            let user = {_id: message.author.id};
+            database.collection("users").insert(user);
             throw err;
         }
         console.log("User already in database.");
