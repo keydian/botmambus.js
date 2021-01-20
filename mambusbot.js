@@ -15,12 +15,14 @@ mongo.connect(url, {useNewUrlParser: true}, function(err, db) {
 
 
 function isUserOnDatabase(message){
-    database.collection("users").find({userID: message.author.id}, function(err){
+    database.collection("users").find({userID: message.author.id}, function(err, result){
         if (err){
+            throw err;
+        }
+        if (result == null){
             let user = {userID: message.author.id};
             database.collection("users").insert(user);
             console.log("User added to database.");
-            throw err;
         }
     });
 }
