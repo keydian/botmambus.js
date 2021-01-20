@@ -1,7 +1,7 @@
 const {Client} = require('discord.js');
 const mongo = require('mongodb').MongoClient;
 const client = new Client;
-client.login(process.env.BOT_TOKEN).then(console.log);
+client.login(process.env.BOT_TOKEN);
 client.on('ready', readyDiscord);
 const url = encodeURI(process.env.MONGODB_URI);
 let database;
@@ -10,7 +10,6 @@ mongo.connect(url, {useNewUrlParser: true, useUnifiedTopology:true}, function(er
     if (err) throw err;
     console.log("Database created!");
     database = db.db("botMambusJS");
-    db.close();
 });
 
 
