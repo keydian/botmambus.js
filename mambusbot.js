@@ -15,10 +15,9 @@ mongo.connect(url, {useNewUrlParser: true}, function(err, db) {
 
 
 function isUserOnDatabase(message){
-        if (database.collection("users").find({userID: message.author.id}).count() === 0){
+        if (database.collection("users").find({userID: message.author.id}).length === 0){
             let user = {userID: message.author.id};
-            database.collection("users").insertOne(user);
-            console.log("User added to database.");
+            database.collection("users").insertOne(user).then(r => console.log("User added to database."));
         }
 }
 function readyDiscord(){
