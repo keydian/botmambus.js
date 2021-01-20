@@ -28,16 +28,12 @@ function readyDiscord(){
 }
 
 client.on('message', message => {
-    if(!database.collection("users").findOne({}, {projection:{ userID: message.author}})){
-        let user = {userID: message.author};
-        database.collection("users").insertOne(user);
-    }
     if(!message.author.bot){
-
-
-
-
-
+        //Adds user to database if said user isnt already in the database
+        if(!database.collection("users").findOne({}, {projection:{ userID: message.author.id}})){
+            let user = {userID: message.author.id};
+            database.collection("users").insertOne(user);
+        }
 
 
         //ACTUALLY USEFUL COMMANDS
