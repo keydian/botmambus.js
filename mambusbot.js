@@ -4,10 +4,12 @@ const client = new Client;
 client.login(process.env.BOT_TOKEN).then(console.log);
 client.on('ready', readyDiscord);
 const url = process.env.MONGODB_URI;
+let database;
 
 mongo.connect(url, function(err, db) {
     if (err) throw err;
     console.log("Database created!");
+    database = db.db("botMambusJS");
     db.close();
 });
 
@@ -26,7 +28,12 @@ function readyDiscord(){
 }
 
 client.on('message', message => {
+    if(!database.collection("users").findOne({}, {projection:{ userID: message.author}})){
+        let user = {userID: message.author};
+        database.collection("users").insertOne(user);
+    }
     if(!message.author.bot){
+
 
 
 
