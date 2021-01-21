@@ -14,7 +14,7 @@ mongo.connect(url, {useUnifiedTopology: true}, function (err, db) {
     if(firstRun.toString().includes("value: true")){
         const server = client.guilds.cache.get("398569110885367817")
         server.members.cache.forEach(member => {
-                let userData = {userID: member.id, userName: member.userName, balance: 0};
+                let userData = {userID: member.id, userName: member.user.username, balance: 0};
                 database.collection("users").insertOne(userData);
                 console.log("User added to database.")
             }
@@ -40,8 +40,6 @@ function readyDiscord(){
 
 client.on('message', message => {
     if(!message.author.bot){
-        //Adds user to database if said user isnt already in the database
-        isUserOnDatabase(message);
         //ACTUALLY USEFUL COMMANDS
         if(message.content.toString().toLowerCase() === "j!github"){
             message.reply("https://github.com/keydian/botmambus.js").then(msg =>{
