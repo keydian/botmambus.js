@@ -6,16 +6,17 @@ client.on('ready', readyDiscord);
 const url = encodeURI(process.env.MONGODB_URI);
 let database;
 
-mongo.connect(url, {useUnifiedTopology: true}, function (err, client) {
+mongo.connect(url, {useUnifiedTopology: true}, function (err, db) {
     if (err) throw err;
     console.log("Database created!");
-    database = client.db("botMambusJS");
+    database = db.db("botMambusJS");
     let firstRun = database.collection("boolean").find({name: "firstRun"}).limit(1).next();
     if(firstRun.toString().includes("value: true")){
-        const server = client.guilds.get("398569110885367817");
+        const server = client.guilds.cache.get("398569110885367817")
         server.members.cache.forEach(member => {
                 let userData = {userID: member.id, userName: member.userName, balance: 0};
                 database.collection("users").insertOne(userData);
+                console.log("User added to database.")
             }
         )
         database.collection("boolean").updateOne({name: firstRun},{$set:{'value':'false'}});
